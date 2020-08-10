@@ -10,53 +10,78 @@
       <a asp-page="Create" class="btn btn-info form-control text-white">Dodaj nowego klienta</a>
    </div>
 
-   <div class="col-12 border p-3 mt-3">
-      <form method="post">
-         @if (Model.Clients.Count()>0)
-         {
-            <table class="table table-striped border">
-               <tr class="table-secondary">
-                  <th>
-                     <label asp-for="Clients.FirstOrDefault().Name">Nazwa klienta</label>
-                  </th>
-                  <th>
-                     <label asp-for="Clients.FirstOrDefault().Car">Samochód</label>
-                  </th>
-                  <th>
-                     <label asp-for="Clients.FirstOrDefault().Status">Status</label>
-                  </th>
-                  <th>
+   <!-- #region STANDARDOWA WERSJA -->
+   @*
+         <div class="col-12 border p-3 mt-3">
+         <form method="post">
+            @if (Model.Clients.Count()>0)
+            {
+               <table class="table table-striped border">
+                  <tr class="table-secondary">
+                     <th>
+                        <label asp-for="Clients.FirstOrDefault().Name">Nazwa klienta</label>
+                     </th>
+                     <th>
+                        <label asp-for="Clients.FirstOrDefault().Car">Samochód</label>
+                     </th>
+                     <th>
+                        <label asp-for="Clients.FirstOrDefault().Status">Status</label>
+                     </th>
+                     <th>
 
-                  </th>
-               </tr>
-               @foreach (var client in Model.Clients)
-               {
-                  <tr>
-                     <td>
-                        @Html.DisplayFor(m => client.Name)
-                     </td>
-                     <td>
-                        @Html.DisplayFor(m => client.Car)
-                     </td>
-                     <td>
-                        @Html.DisplayFor(m => client.Status)
-                     </td>
-                     <td>
-                        <button class="btn btn-danger btn-sm">Usuń</button>
-                        <a asp-page="Edit" asp-route-id="@client.Id" class="btn btn-success btn-sm text-white">Edytuj</a>
-                     </td>
+                     </th>
                   </tr>
-               }
-            </table>
-         }
-         else 
-         {
-            <p>Brak wprowadzonych klientów</p>
-         }
-      </form>
+                  @foreach (var client in Model.Clients)
+                  {
+                     <tr>
+                        <td>
+                           @Html.DisplayFor(m => client.Name)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(m => client.Car)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(m => client.Status)
+                        </td>
+                        <td>
+                           <button asp-page-handler="Delete" asp-route-id="@client.Id" onclick="return confirm('Czy jesteś pewny, że chcesz usunąć klienta?')" class="btn btn-danger btn-sm">Usuń</button>
+                           <a asp-page="Edit" asp-route-id="@client.Id" class="btn btn-success btn-sm text-white">Edytuj</a>
+                        </td>
+                     </tr>
+                  }
+               </table>
+            }
+            else
+            {
+               <p>Brak wprowadzonych klientów</p>
+            }
+         </form>
+      </div>
+
+       <div class="col-12" style="text-align:center">
+          <br />
+          <span class="h3 text-info">LUB</span>
+          <br /><br />
+       </div>
+      *@
+   <!-- #endregion -->
+
+   <br /><br /><br />
+   <div class="col-12 border p-3">
+      <table id="DT_Load" class="table table-striped table-bordered" style="width:100%">
+         <thead>
+            <tr>
+               <th>Nazwa klienta</th>
+               <th>Samochód</th>
+               <th>Status</th>
+               <th></th>
+            </tr>
+         </thead>
+      </table>
    </div>
+</div> 
 
-
-</div>
-
+@section Scripts{ 
+   <script src="~/js/clientList.js"></script>
+}
 

@@ -25,5 +25,18 @@ namespace CarServiceClients.Pages.ClientList
         {
             Clients = await _db.Client.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var client = await _db.Client.FindAsync(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            _db.Client.Remove(client);
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+        }
     }
 }
