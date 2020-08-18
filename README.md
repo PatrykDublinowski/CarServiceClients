@@ -23,15 +23,15 @@ Application helps the owners of car services to organize work. Application stora
 * SQL SERVER 2014
 
 Links to external add-ons:
-*CSS
-"https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
-"https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-"https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
-*JS
-"https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"
-"https://cdnjs.cloudfare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
-"https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"
-"https://unpkg.com/sweetalert/dist/sweetalert.min.js"
+CSS
+* https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css
+* https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css
+* https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css
+JS
+* https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js
+* https://cdnjs.cloudfare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js
+* https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js
+* https://unpkg.com/sweetalert/dist/sweetalert.min.js
 
 ## Setup
 How to install will apear soon :)

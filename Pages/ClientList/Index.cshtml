@@ -1,5 +1,8 @@
 ﻿@page
 @model CarServiceClients.Pages.ClientList.IndexModel
+@{
+   ViewData["Title"] = "Lista klientów";
+}
 
 <br />
 <div class="container row p-0 m-0">
@@ -7,7 +10,7 @@
       <h2 class="text-info">Lista klientów</h2>
    </div>
    <div class="col-3">
-      <a asp-page="Create" class="btn btn-info form-control text-white">Dodaj nowego klienta</a>
+      <a asp-page="Upsert" class="btn btn-info form-control text-white">Dodaj nowego klienta</a>
    </div>
 
    <!-- #region STANDARDOWA WERSJA -->
@@ -63,7 +66,7 @@
           <span class="h3 text-info">LUB</span>
           <br /><br />
        </div>
-      *@
+   *@
    <!-- #endregion -->
 
    <br /><br /><br />
@@ -79,9 +82,9 @@
          </thead>
       </table>
    </div>
-</div> 
+</div>
 
-@section Scripts{ 
+@section Scripts{
    <script src="~/js/clientList.js"></script>
 }
 

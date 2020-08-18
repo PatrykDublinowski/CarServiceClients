@@ -1,0 +1,60 @@
+﻿@page
+@model CarServiceClients.Pages.ClientList.UpsertModel
+@{
+    ViewData["Title"] = Model.Client.Id != 0 ? "Edycja klienta" : "Dodadawanie klienta";
+}
+
+<br />
+<h2 class="text-info">@(Model.Client.Id!=0? "Edytuj": "Dodaj") klienta</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+   <form method="post">
+      @if (Model.Client.Id != 0)
+      {
+         <input type="hidden" asp -for="Client.Id" />
+      }
+      <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+      <div class="form-group row">
+         <div class="col-3">
+            <label asp-for="Client.Name">Nazwa klienta</label>
+         </div>
+         <div class="col-6">
+            <input asp-for="Client.Name" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.Name" class="text-danger"></span>
+      </div>
+      <div class="form-group row">
+         <div class="col-3">
+            <label asp-for="Client.Car">Samochód klienta</label>
+         </div>
+         <div class="col-6">
+            <input asp-for="Client.Car" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.Car" class="text-danger"></span>
+      </div>
+      <div class="form-group row">
+         <div class="col-3">
+            <label asp-for="Client.Status">Status</label>
+         </div>
+         <div class="col-6">
+            <input asp-for="Client.Status" class="form-control" />
+         </div>
+      </div>
+      <div class="form-group row">
+         <div class="col-3 offset-3">
+            <button type="submit" class="btn btn-primary form-control">@(Model.Client.Id!=0? "Edytuj": "Dodaj")</button>
+         </div>
+         <div class="col-3">
+            <a asp-page="Index" class="btn btn-success form-control">Powrót</a>
+         </div>
+      </div>
+   </form>
+</div>
+
+@*Nie odświeża strony tylko kieruje do inputa gdzie nie ma wymaganej wartości*@
+@section Scripts{
+   <partial name="_ValidationScriptsPartial" />
+}
+
+
