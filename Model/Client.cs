@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CarServiceClients.Model
@@ -17,6 +19,9 @@ namespace CarServiceClients.Model
         [Required]
         public string Car { get; set; }
 
-        public string Status { get; set; }
+        [Required]
+        public Status Status { get; set; }
+
+        public string Description { get; set; }
     }
 }

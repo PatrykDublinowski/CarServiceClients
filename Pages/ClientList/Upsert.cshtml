@@ -12,7 +12,7 @@
    <form method="post">
       @if (Model.Client.Id != 0)
       {
-         <input type="hidden" asp -for="Client.Id" />
+         <input type="hidden" asp-for="Client.Id" />
       }
       <div class="text-danger" asp-validation-summary="ModelOnly"></div>
       <div class="form-group row">
@@ -38,7 +38,9 @@
             <label asp-for="Client.Status">Status</label>
          </div>
          <div class="col-6">
-            <input asp-for="Client.Status" class="form-control" />
+            <select asp-for="Client.Status" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.Status>()" class="form-control">
+               <option selected="selected" value="">Proszę wybrać</option>
+            </select>
          </div>
       </div>
       <div class="form-group row">

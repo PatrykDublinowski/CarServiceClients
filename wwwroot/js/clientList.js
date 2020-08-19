@@ -1,4 +1,9 @@
 ﻿var dataTable;
+var statusEnum = {
+    0: "wprowadzony",
+    1: "realizowany",
+    2: "zakończony"
+};
 
 $(document).ready(function () {
     loadDataTable();
@@ -14,7 +19,12 @@ function loadDataTable() {
         "columns": [
             { "data": "name", "width": "20%" },
             { "data": "car", "width": "20%" },
-            { "data": "status", "width": "20%" },
+            {
+                "data": "status",
+                "render": function (data) {
+                    return statusEnum[data];
+                },"width": "20%"
+            },
             {
                 "data": "id",
                 "render": function (data) {
