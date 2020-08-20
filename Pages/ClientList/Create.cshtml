@@ -1,5 +1,8 @@
 ﻿@page
 @model CarServiceClients.Pages.ClientList.CreateModel
+@{
+   ViewData["Title"] = "Dodawanie klienta";
+}
 
 <br />
 <h2 class="text-info">Dodawanie nowego klienta</h2>
@@ -46,6 +49,6 @@
 </div>
 
 @*Nie odświeża strony tylko kieruje do inputa gdzie nie ma wymaganej wartości*@
-@section Scripts{ 
+@section Scripts{
    <partial name="_ValidationScriptsPartial" />
 }

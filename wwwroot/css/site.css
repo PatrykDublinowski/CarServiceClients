@@ -2,9 +2,9 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    font-family: Impact, Charcoal, sans-serif;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
@@ -54,18 +54,132 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'Century Gothic';
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    border-top: 3px solid red;
+    text-align:center;
+    color:#fff;
+    background:#000;
 }
+
+/* My styles
+-------------------------------------------------- */
+.containerFull {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height:auto;
+}
+.slideText{
+    border:3px solid red;
+    position:absolute;
+    color:#000;
+    background: #fff;
+    padding:50px;
+    opacity: 0.8;
+}
+.card{
+    background: #0366d6;
+    border:5px groove red;
+}
+.card:hover {
+      -webkit-animation: pulsate-bck 1.5s ease-in-out infinite both;
+      animation: pulsate-bck 1.5s ease-in-out infinite both;
+    }
+.cartText{
+    font-size:25px;
+    color:#fff;
+    text-align:center;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.fa {
+    font-size:50px;
+    margin-top:15px;
+    color: #fff;
+    text-align: center;
+}
+/* animate text slider
+-------------------------------------------------- */
+.tracking-in-expand {
+    -webkit-animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+@-webkit-keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+/* animate cards
+-------------------------------------------------- */
+@-webkit-keyframes pulsate-bck {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes pulsate-bck {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+

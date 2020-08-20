@@ -17,14 +17,15 @@ function loadDataTable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "name", "width": "20%" },
-            { "data": "car", "width": "20%" },
+            { "data": "name", "width": "15%" },
+            { "data": "car", "width": "15%" },
             {
                 "data": "status",
                 "render": function (data) {
                     return statusEnum[data];
-                },"width": "20%"
+                },"width": "15%"
             },
+            { "data": "description", "width": "25%" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -38,7 +39,7 @@ function loadDataTable() {
                         Usuń 
                     </a>
                     </div>`;
-                }, "width": "40%"
+                }, "width": "30%"
             }
         ],
         "language": {

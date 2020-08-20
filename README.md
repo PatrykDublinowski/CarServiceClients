@@ -20,6 +20,7 @@ Application helps the owners of car services to organize work. Application stora
 
 ## Technologies
 * ASP.NET Core 3.1 (RAZOR pages!)
+* Entity Framework Core 3.1
 * SQL SERVER 2014
 
 Links to external add-ons:
@@ -41,11 +42,16 @@ Code will apear soon :)
 
 ## Features
 List of features ready and TODOs for future development
-* Everything yet:)
-
+* Add list of clients page
+* Add create page
+* Add update page
+* Combain create page and update page to one page (upsert)
 
 To-do list:
-* Everything yet :)
+* Translate required alerts
+* Set status field as combobox
+* improving the visual aspects
+* Add email field and send email to client when the job is done
 
 ## Status
 Project is: _in progress
