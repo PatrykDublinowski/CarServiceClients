@@ -4,15 +4,17 @@
    ViewData["Title"] = "Lista klientów";
 }
 
-<br />
-<div class="container row p-0 m-0">
-   <div class="col-9">
-      <h2 class="text-info">Lista klientów</h2>
-   </div>
-   <div class="col-3">
-      <a asp-page="Upsert" class="btn btn-info form-control text-white">Dodaj nowego klienta</a>
-   </div>
+<div class="fotoHeader">
+   <br />
+   <h2 class="textHeader align-content-center">Lista klientów</h2>
+   <br />
+</div>
 
+<div class="container col-3 p-5">
+   <a asp-page="Upsert" class="btn btn-info form-control text-white">+ Dodaj nowego klienta</a>
+</div>
+
+<div class="container row" style="width: 100%; padding-right: 10px; padding-left: 10px; margin-right: auto; margin-left: auto;">
    <!-- #region STANDARDOWA WERSJA -->
    @*
          <div class="col-12 border p-3 mt-3">
