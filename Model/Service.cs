@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceClients.Model
 {
-    public class Client
+    public class Service
     {
         [Key]
         public int Id { get; set; }

@@ -12,7 +12,7 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#DT_Load').DataTable({
         "ajax": {
-            "url": "/api/client",
+            "url": "/api/service",
             "type": "GET",
             "datatype": "json"
         },
@@ -30,12 +30,12 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                    <a href="/ClientList/Upsert?id=${data}" class='btn btn-success text-white' style='cursor:pointer;width:70px;'>
+                    <a href="/ServiceList/Upsert?id=${data}" class='btn btn-success text-white' style='cursor:pointer;width:70px;'>
                         Edytuj
                     </a>
                     &nbsp;
                     <a class='btn btn-danger text-white' style='cursor:pointer;width:70px;'
-                    onclick=Delete('/api/client?id='+${data})>
+                    onclick=Delete('/api/service?id='+${data})>
                         Usuń 
                     </a>
                     </div>`;

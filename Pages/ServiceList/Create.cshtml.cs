@@ -7,7 +7,7 @@ using CarServiceClients.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CarServiceClients.Pages.ClientList
+namespace CarServiceClients.Pages.ServiceList
 {
     public class CreateModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace CarServiceClients.Pages.ClientList
 
         //jak jest jako zbindowana to nie trzeba jej podawać do konstruktora OnPost, jest tam z automatu
         [BindProperty]
-        public Client Client { get; set; }
+        public Service Service { get; set; }
 
         public void OnGet()
         {
@@ -30,7 +30,7 @@ namespace CarServiceClients.Pages.ClientList
         {
             if (ModelState.IsValid)
             {
-                await _db.Client.AddAsync(Client);
+                await _db.Service.AddAsync(Service);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("Index");
             }

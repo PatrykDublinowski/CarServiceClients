@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarServiceClients.Pages.ClientList
+namespace CarServiceClients.Pages.ServiceList
 {
     public class IndexModel : PageModel
     {
@@ -18,22 +18,22 @@ namespace CarServiceClients.Pages.ClientList
             _db = db;
         }
 
-        public IEnumerable<Client> Clients { get; set; }
+        public IEnumerable<Service> Services { get; set; }
 
 
         public async Task OnGet()
         {
-            Clients = await _db.Client.ToListAsync();
+            Services = await _db.Service.ToListAsync();
         }
 
         public async Task<IActionResult> OnPostDelete(int id)
         {
-            var client = await _db.Client.FindAsync(id);
-            if (client == null)
+            var service = await _db.Service.FindAsync(id);
+            if (service == null)
             {
                 return NotFound();
             }
-            _db.Client.Remove(client);
+            _db.Service.Remove(service);
             await _db.SaveChangesAsync();
 
             return RedirectToPage("Index");

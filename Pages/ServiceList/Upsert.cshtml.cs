@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarServiceClients.Pages.ClientList
+namespace CarServiceClients.Pages.ServiceList
 {
     public class UpsertModel : PageModel
     {
@@ -19,12 +19,12 @@ namespace CarServiceClients.Pages.ClientList
         }
 
         [BindProperty]
-        public Client Client { get; set; }
+        public Service Service { get; set; }
 
         public async Task<IActionResult> OnGet(int? id)
         {
             //TODO: poskracać IFy
-            Client = new Client();
+            Service = new Service();
             if (id == null)
             {
                 //create
@@ -32,8 +32,8 @@ namespace CarServiceClients.Pages.ClientList
             }
 
             //update
-            Client = await _db.Client.FirstOrDefaultAsync(u => u.Id == id);
-            if (Client==null)
+            Service = await _db.Service.FirstOrDefaultAsync(u => u.Id == id);
+            if (Service == null)
             {
                 return NotFound();
             }
@@ -44,13 +44,13 @@ namespace CarServiceClients.Pages.ClientList
         {
             if (ModelState.IsValid)
             {
-                if (Client.Id == 0)
+                if (Service.Id == 0)
                 {
-                    _db.Client.Add(Client);
+                    _db.Service.Add(Service);
                 }
                 else
                 {
-                    _db.Client.Update(Client);
+                    _db.Service.Update(Service);
                 }
 
                 await _db.SaveChangesAsync();

@@ -1,17 +1,17 @@
 ﻿@page
-@model CarServiceClients.Pages.ClientList.IndexModel
+@model CarServiceClients.Pages.ServiceList.IndexModel
 @{
-   ViewData["Title"] = "Lista klientów";
+   ViewData["Title"] = "Lista usług";
 }
 
 <div class="fotoHeader">
    <br />
-   <h2 class="textHeader align-content-center">Lista klientów</h2>
+   <h2 class="textHeader align-content-center">Lista zgłoszonych usług</h2>
    <br />
 </div>
 
 <div class="container col-3 p-5">
-   <a asp-page="Upsert" class="btn btn-info form-control text-white">+ Dodaj nowego klienta</a>
+   <a asp-page="Upsert" class="btn btn-info form-control text-white">+ Dodaj nową usługę</a>
 </div>
 
 <div class="container row" style="width: 100%; padding-right: 10px; padding-left: 10px; margin-right: auto; margin-left: auto;">
@@ -19,38 +19,38 @@
    @*
          <div class="col-12 border p-3 mt-3">
          <form method="post">
-            @if (Model.Clients.Count()>0)
+            @if (Model.Services.Count()>0)
             {
                <table class="table table-striped border">
                   <tr class="table-secondary">
                      <th>
-                        <label asp-for="Clients.FirstOrDefault().Name">Nazwa klienta</label>
+                        <label asp-for="Services.FirstOrDefault().Name">Nazwa klienta</label>
                      </th>
                      <th>
-                        <label asp-for="Clients.FirstOrDefault().Car">Samochód</label>
+                        <label asp-for="Services.FirstOrDefault().Car">Samochód</label>
                      </th>
                      <th>
-                        <label asp-for="Clients.FirstOrDefault().Status">Status</label>
+                        <label asp-for="Services.FirstOrDefault().Status">Status</label>
                      </th>
                      <th>
 
                      </th>
                   </tr>
-                  @foreach (var client in Model.Clients)
+                  @foreach (var service in Model.Services)
                   {
                      <tr>
                         <td>
-                           @Html.DisplayFor(m => client.Name)
+                           @Html.DisplayFor(m => service.Name)
                         </td>
                         <td>
-                           @Html.DisplayFor(m => client.Car)
+                           @Html.DisplayFor(m => service.Car)
                         </td>
                         <td>
-                           @Html.DisplayFor(m => client.Status)
+                           @Html.DisplayFor(m => service.Status)
                         </td>
                         <td>
-                           <button asp-page-handler="Delete" asp-route-id="@client.Id" onclick="return confirm('Czy jesteś pewny, że chcesz usunąć klienta?')" class="btn btn-danger btn-sm">Usuń</button>
-                           <a asp-page="Edit" asp-route-id="@client.Id" class="btn btn-success btn-sm text-white">Edytuj</a>
+                           <button asp-page-handler="Delete" asp-route-id="@service.Id" onclick="return confirm('Czy jesteś pewny, że chcesz usunąć klienta?')" class="btn btn-danger btn-sm">Usuń</button>
+                           <a asp-page="Edit" asp-route-id="@service.Id" class="btn btn-success btn-sm text-white">Edytuj</a>
                         </td>
                      </tr>
                   }
@@ -88,6 +88,6 @@
 </div>
 
 @section Scripts{
-   <script src="~/js/clientList.js"></script>
+   <script src="~/js/serviceList.js"></script>
 }
 

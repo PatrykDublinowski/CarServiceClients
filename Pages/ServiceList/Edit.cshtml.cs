@@ -1,13 +1,9 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CarServiceClients.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CarServiceClients.Pages.ClientList
+namespace CarServiceClients.Pages.ServiceList
 {
     public class EditModel : PageModel
     {
@@ -19,21 +15,21 @@ namespace CarServiceClients.Pages.ClientList
         }
 
         [BindProperty]
-        public Client Client { get; set; }
+        public Service Service { get; set; }
 
         public async Task OnGet(int id)
         {
-            Client = await _db.Client.FindAsync(id); 
+            Service = await _db.Service.FindAsync(id); 
         }
 
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
-                var ClientFromDb    = await _db.Client.FindAsync(Client.Id);
-                ClientFromDb.Name   = Client.Name;
-                ClientFromDb.Car    = Client.Car;
-                ClientFromDb.Status = Client.Status;
+                var ServiceFromDb = await _db.Service.FindAsync(Service.Id);
+                ServiceFromDb.Name   = Service.Name;
+                ServiceFromDb.Car    = Service.Car;
+                ServiceFromDb.Status = Service.Status;
 
                 await _db.SaveChangesAsync();
 

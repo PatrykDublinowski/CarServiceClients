@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarServiceClients.Controllers
 {
-    [Route("api/Client")]
+    [Route("api/Service")]
     [ApiController]
-    public class ClientController : Controller
+    public class ServiceController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public ClientController(ApplicationDbContext db) 
+        public ServiceController(ApplicationDbContext db) 
         {
             _db = db;
         }
@@ -22,18 +22,18 @@ namespace CarServiceClients.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll ()
         {
-            return Json(new { data = await _db.Client.ToListAsync() });
+            return Json(new { data = await _db.Service.ToListAsync() });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var clientFromDb = await _db.Client.FirstOrDefaultAsync(u => u.Id == id);
-            if (clientFromDb == null)
+            var serviceFromDb = await _db.Service.FirstOrDefaultAsync(u => u.Id == id);
+            if (serviceFromDb == null)
             {
                 return Json(new { success = false, message = "Błąd podczas usuwania" });
             }
-            _db.Client.Remove(clientFromDb);
+            _db.Service.Remove(serviceFromDb);
             await _db.SaveChangesAsync();
             return Json(new { success = true, message = "Klient został usunięty" });
         }

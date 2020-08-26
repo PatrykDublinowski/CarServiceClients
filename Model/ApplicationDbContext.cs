@@ -12,11 +12,11 @@ namespace CarServiceClients.Model
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        public DbSet<Client> Client { get; set; }
+        public DbSet<Service> Service { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Client>(entity =>
+            modelBuilder.Entity<Service>(entity =>
             {
                 var converter = new EnumToNumberConverter<Status, int>();
                 entity.Property(e => e.Status)
