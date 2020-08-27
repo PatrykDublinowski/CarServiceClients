@@ -7,33 +7,33 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarServiceClients.Pages.ServiceList
 {
-    public class IndexModel : PageModel
+    public class IndexEmployeesModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public IndexModel(ApplicationDbContext db)
+        public IndexEmployeesModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public IEnumerable<Service> Services { get; set; }
+        public IEnumerable<Employee> Employees { get; set; }
 
         public async Task OnGet()
         {
-            Services = await _db.Service.ToListAsync();
+            Employees = await _db.Employee.ToListAsync();
         }
 
         public async Task<IActionResult> OnPostDelete(int id)
         {
-            var service = await _db.Service.FindAsync(id);
-            if (service == null)
+            var employee = await _db.Employee.FindAsync(id);
+            if (employee == null)
             {
                 return NotFound();
             }
-            _db.Service.Remove(service);
+            _db.Employee.Remove(employee);
             await _db.SaveChangesAsync();
 
-            return RedirectToPage("Index");
+            return RedirectToPage("IndexEmployees");
         }
     }
 }

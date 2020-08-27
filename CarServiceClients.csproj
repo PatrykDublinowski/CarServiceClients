@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200826074203_RenameClientToService.cs" />
     <Compile Remove="Migrations\20200826074203_RenameClientToService.Designer.cs" />
+    <Compile Remove="Migrations\20200827091309_NewTablesV1.cs" />
+    <Compile Remove="Migrations\20200827091309_NewTablesV1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

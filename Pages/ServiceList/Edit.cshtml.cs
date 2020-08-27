@@ -7,35 +7,37 @@ namespace CarServiceClients.Pages.ServiceList
 {
     public class EditModel : PageModel
     {
-        private ApplicationDbContext _db;
+        //TOOD:na razie nie używane zostawione dla przykładu
 
-        public EditModel(ApplicationDbContext db)
-        {
-            _db = db;
-        }
+        //private ApplicationDbContext _db;
 
-        [BindProperty]
-        public Service Service { get; set; }
+        //public EditModel(ApplicationDbContext db)
+        //{
+        //    _db = db;
+        //}
 
-        public async Task OnGet(int id)
-        {
-            Service = await _db.Service.FindAsync(id); 
-        }
+        //[BindProperty]
+        //public Service Service { get; set; }
 
-        public async Task<IActionResult> OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                var ServiceFromDb = await _db.Service.FindAsync(Service.Id);
-                ServiceFromDb.Name   = Service.Name;
-                ServiceFromDb.Car    = Service.Car;
-                ServiceFromDb.Status = Service.Status;
+        //public async Task OnGet(int id)
+        //{
+        //    Service = await _db.Service.FindAsync(id); 
+        //}
 
-                await _db.SaveChangesAsync();
+        //public async Task<IActionResult> OnPost()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var ServiceFromDb = await _db.Service.FindAsync(Service.ServiceID);
+        //        ServiceFromDb.Client = Service.Client;
+        //        ServiceFromDb.Client.Cars = Service.Car;
+        //        ServiceFromDb.Status = Service.Status;
 
-                return RedirectToPage("Index");
-            }
-            return RedirectToPage();
-        }
+        //        await _db.SaveChangesAsync();
+
+        //        return RedirectToPage("Index");
+        //    }
+        //    return RedirectToPage();
+        //}
     }
 }

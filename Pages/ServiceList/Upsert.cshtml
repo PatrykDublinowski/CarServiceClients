@@ -1,39 +1,39 @@
 ﻿@page
 @model CarServiceClients.Pages.ServiceList.UpsertModel
 @{
-    ViewData["Title"] = Model.Service.Id != 0 ? "Edycja usługi" : "Dodadawanie usługi";
+    ViewData["Title"] = Model.Service.ServiceID != 0 ? "Edycja usługi" : "Dodadawanie usługi";
 }
 
    <div class="fotoHeader">
       <br />
-      <h2 class="textHeader align-content-center">@(Model.Service.Id!=0? "Edytuj": "Dodaj") usługę</h2>
+      <h2 class="textHeader align-content-center">@(Model.Service.ServiceID!=0? "Edytuj": "Dodaj") usługę</h2>
       <br />
    </div>
 
    <div class="border container" style="padding:30px; margin-top:50px;">
       <form method="post">
-         @if (Model.Service.Id != 0)
+         @if (Model.Service.ServiceID != 0)
          {
-            <input type="hidden" asp-for="Service.Id" />
+            <input type="hidden" asp-for="Service.ServiceID" />
          }
          <div class="text-danger" asp-validation-summary="ModelOnly"></div>
          <div class="form-group row">
             <div class="col-3">
-               <label asp-for="Service.Name">Nazwa klienta</label>
+               <label asp-for="Service.ClientID">ID klienta</label>
             </div>
             <div class="col-6">
-               <input asp-for="Service.Name" class="form-control" />
+               <input asp-for="Service.ClientID" class="form-control" />
             </div>
-            <span asp-validation-for="Service.Name" class="text-danger"></span>
+            <span asp-validation-for="Service.ClientID" class="text-danger"></span>
          </div>
          <div class="form-group row">
             <div class="col-3">
-               <label asp-for="Service.Car">Samochód klienta</label>
+               <label asp-for="Service.Client.Cars">ID samochodów</label>
             </div>
             <div class="col-6">
-               <input asp-for="Service.Car" class="form-control" />
+               <input asp-for="Service.Client.Cars" class="form-control" />
             </div>
-            <span asp-validation-for="Service.Car" class="text-danger"></span>
+            <span asp-validation-for="Service.Client.Cars" class="text-danger"></span>
          </div>
          <div class="form-group row">
             <div class="col-3">
@@ -55,7 +55,7 @@
          </div>
          <div class="form-group row">
             <div class="col-3 offset-3">
-               <button type="submit" class="btn btn-primary form-control">@(Model.Service.Id!=0? "Edytuj": "Dodaj")</button>
+               <button type="submit" class="btn btn-primary form-control">@(Model.Service.ServiceID!=0? "Edytuj": "Dodaj")</button>
             </div>
             <div class="col-3">
                <a asp-page="Index" class="btn btn-success form-control">Powrót</a>

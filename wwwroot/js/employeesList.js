@@ -1,8 +1,7 @@
 ﻿var dataTable;
-var statusEnum = {
-    0: "wprowadzony",
-    1: "realizowany",
-    2: "zakończony"
+var isFree = {
+    0: "tak",
+    1: "nie"
 };
 
 $(document).ready(function () {
@@ -10,32 +9,32 @@ $(document).ready(function () {
 });
 
 function loadDataTable() {
-    dataTable = $('#DT_Load').DataTable({
+    dataTable = $('#DT_Load_Employees').DataTable({
         "ajax": {
-            "url": "/api/service",
+            "url": "/api/employee",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
-            { "data": "clientID", "width": "15%" },
-            { "data": "carID", "width": "15%" },
+            { "data": "getFullName", "width": "19%" },
+            { "data": "profession", "width": "17%" },
             {
-                "data": "status",
+                "data": "isFree",
                 "render": function (data) {
-                    return statusEnum[data];
-                },"width": "15%"
+                    return isFree[data];
+                }, "width": "17%"
             },
-            { "data": "description", "width": "25%" },
+            { "data": "phone", "width": "17%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                    <a href="/ServiceList/Upsert?id=${data}" class='btn btn-success text-white' style='cursor:pointer;width:70px;'>
+                    <a href="/ServiceList/UpsertEmployee?id=${data}" class='btn btn-success text-white' style='cursor:pointer;width:70px;'>
                         Edytuj
                     </a>
                     &nbsp;
                     <a class='btn btn-danger text-white' style='cursor:pointer;width:70px;'
-                    onclick=Delete('/api/service?id='+${data})>
+                    onclick=Delete('/api/Employee?id='+${data})>
                         Usuń 
                     </a>
                     </div>`;
@@ -64,6 +63,6 @@ function loadDataTable() {
                 "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
             }
         },
-        "width":"100%"
+        "width": "100%"
     })
 }

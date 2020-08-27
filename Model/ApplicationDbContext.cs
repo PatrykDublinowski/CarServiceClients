@@ -13,6 +13,9 @@ namespace CarServiceClients.Model
         {
         }
         public DbSet<Service> Service { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<Car> Car { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +24,12 @@ namespace CarServiceClients.Model
                 var converter = new EnumToNumberConverter<Status, int>();
                 entity.Property(e => e.Status)
                  .HasConversion(converter);
+            });
+            modelBuilder.Entity<Employee>(entity =>
+            {
+                var converterProfession = new EnumToNumberConverter<Profession, int>();
+                entity.Property(e => e.Profession)
+                 .HasConversion(converterProfession);
             });
         }
     } 

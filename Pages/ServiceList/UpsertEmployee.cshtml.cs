@@ -6,31 +6,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarServiceClients.Pages.ServiceList
 {
-    public class UpsertModel : PageModel
+    public class UpsertEmployeeModel : PageModel
     {
         private ApplicationDbContext _db;
 
-        public UpsertModel(ApplicationDbContext db)
+        public UpsertEmployeeModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public Service Service { get; set; }
+        public Employee Employee { get; set; }
 
         public async Task<IActionResult> OnGet(int? id)
         {
             //TODO: poskracać IFy
-            Service = new Service();
+            Employee = new Employee();
             if (id == null)
             {
                 //create
-               return Page();
+                return Page();
             }
 
             //update
-            Service = await _db.Service.FirstOrDefaultAsync(u => u.ServiceID == id);
-            if (Service == null)
+            Employee = await _db.Employee.FirstOrDefaultAsync(u => u.EmployeeID == id);
+            if (Employee == null)
             {
                 return NotFound();
             }
@@ -41,18 +41,18 @@ namespace CarServiceClients.Pages.ServiceList
         {
             if (ModelState.IsValid)
             {
-                if (Service.ServiceID == 0)
+                if (Employee.EmployeeID == 0)
                 {
-                    _db.Service.Add(Service);
+                    _db.Employee.Add(Employee);
                 }
                 else
                 {
-                    _db.Service.Update(Service);
+                    _db.Employee.Update(Employee);
                 }
 
                 await _db.SaveChangesAsync();
 
-                return RedirectToPage("Index");
+                return RedirectToPage("IndexEmployees");
             }
             return RedirectToPage();
         }

@@ -1,0 +1,121 @@
+﻿@page
+@model CarServiceClients.Pages.ServiceList.UpsertEmployeeModel
+@{
+   ViewData["Title"] = Model.Employee.EmployeeID != 0 ? "Edycja pracownika" : "Dodadawanie pracownika";
+}
+
+<div class="fotoHeader">
+   <br />
+   <h2 class="textHeader align-content-center">@(Model.Employee.EmployeeID!=0? "Edytuj": "Dodaj") pracownika</h2>
+   <br />
+</div>
+
+<div class="border container" style="padding:30px; margin-top:50px;">
+   <form method="post">
+      @if (Model.Employee.EmployeeID != 0)
+      {
+         <input type="hidden" asp-for="Employee.EmployeeID" />
+      }
+      <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Employee.FirstName">Imię</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Employee.FirstName" class="form-control" />
+         </div>
+         <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Employee.LastName">Nazwisko</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Employee.LastName" class="form-control" />
+         </div>
+         <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Employee.Adress">Adres</label>
+         </div>
+         <div class="col-10">
+            <input asp-for="Employee.Adress" class="form-control" />
+         </div>
+         <span asp-validation-for="Employee.Adress" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Employee.PostCode">Kod pocztowy</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Employee.PostCode" class="form-control" />
+         </div>
+         <span asp-validation-for="Employee.PostCode" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Employee.City">Miasto</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Employee.City" class="form-control" />
+         </div>
+         <span asp-validation-for="Employee.City" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Employee.Mail">E-mail</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Employee.Mail" class="form-control" />
+         </div>
+         <span asp-validation-for="Employee.Mail" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Employee.Phone">Telefon</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Employee.Phone" class="form-control" />
+         </div>
+         <span asp-validation-for="Employee.Phone" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Employee.Profession">Specjalizacja</label>
+         </div>
+         <div class="col-4">
+            @*TODO: Problem z konwersja Profession na string!*@
+            <select asp-for="Employee.Profession" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.Profession>()" class="form-control">
+               <option selected="selected" value="">Proszę wybrać</option>
+            </select>
+         </div>
+         <span asp-validation-for="Employee.Profession" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Employee.IsFree">Czy wolny?</label>
+         </div>
+         <div class="col-4">
+            <select asp-for="Employee.IsFree" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.YesNo>()" class="form-control">
+               <option selected="selected" value="">Proszę wybrać</option>
+            </select>
+         </div>
+         <span asp-validation-for="Employee.IsFree" class="text-danger"></span>
+      </div>
+
+      <br />
+      <div class="form-group row">
+         <div class="col-3 offset-3">
+            <button type="submit" class="btn btn-primary form-control">@(Model.Employee.EmployeeID!=0? "Edytuj": "Dodaj")</button>
+         </div>
+         <div class="col-3">
+            <a asp-page="IndexEmployees" class="btn btn-success form-control">Powrót</a>
+         </div>
+      </div>
+
+   </form>
+</div>
+
+@*Nie odświeża strony tylko kieruje do inputa gdzie nie ma wymaganej wartości*@
+@section Scripts{
+   <partial name="_ValidationScriptsPartial" />
+}
+

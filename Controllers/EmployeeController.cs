@@ -1,36 +1,38 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CarServiceClients.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarServiceClients.Controllers
 {
-    [Route("api/Service")]
+    [Route("api/Employee")]
     [ApiController]
-    public class ServiceController : Controller
+    public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public ServiceController(ApplicationDbContext db) 
+        public EmployeeController(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll ()
+        public async Task<IActionResult> GetAll()
         {
-            return Json(new { data = await _db.Service.ToListAsync() });
+            return Json(new { data = await _db.Employee.ToListAsync() });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var serviceFromDb = await _db.Service.FirstOrDefaultAsync(u => u.ServiceID == id);
-            if (serviceFromDb == null)
+            var employeeFromDb = await _db.Employee.FirstOrDefaultAsync(u => u.EmployeeID == id);
+            if (employeeFromDb == null)
             {
                 return Json(new { success = false, message = "Błąd podczas usuwania" });
             }
-            _db.Service.Remove(serviceFromDb);
+            _db.Employee.Remove(employeeFromDb);
             await _db.SaveChangesAsync();
             return Json(new { success = true, message = "Klient został usunięty" });
         }
