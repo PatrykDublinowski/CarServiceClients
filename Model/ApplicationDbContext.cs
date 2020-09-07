@@ -19,18 +19,13 @@ namespace CarServiceClients.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Service>(entity =>
-            {
-                var converter = new EnumToNumberConverter<Status, int>();
-                entity.Property(e => e.Status)
-                 .HasConversion(converter);
-            });
-            modelBuilder.Entity<Employee>(entity =>
-            {
-                var converterProfession = new EnumToNumberConverter<Profession, int>();
-                entity.Property(e => e.Profession)
-                 .HasConversion(converterProfession);
-            });
+            //modelBuilder.Entity<Service>(entity =>
+            //{
+            //    //TODO: To raczej do usunięcia
+            //    var converter = new EnumToNumberConverter<Status, int>();
+            //    entity.Property(e => e.Status)
+            //     .HasConversion(converter);
+            //});
         }
     } 
 }

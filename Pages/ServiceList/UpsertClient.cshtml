@@ -1,0 +1,118 @@
+﻿@page
+@model CarServiceClients.Pages.ServiceList.UpsertClientModel
+@{
+    ViewData["Title"] = Model.Client.ClientID != 0 ? "Edycja klienta" : "Dodadawanie klienta";
+}
+
+<div class="fotoHeader">
+   <br />
+   <h2 class="textHeader align-content-center">@(Model.Client.ClientID!=0? "Edytuj": "Dodaj") klienta</h2>
+   <br />
+</div>
+
+<div class="border container" style="padding:30px; margin-top:50px;">
+   <form method="post">
+      @if (Model.Client.ClientID != 0)
+      {
+         <input type="hidden" asp-for="Client.ClientID" />
+      }
+      <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Client.FirstName">Imię</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Client.FirstName" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.FirstName" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Client.LastName">Nazwisko</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Client.LastName" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.LastName" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Client.Adress">Adres</label>
+         </div>
+         <div class="col-10">
+            <input asp-for="Client.Adress" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.Adress" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Client.PostCode">Kod pocztowy</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Client.PostCode" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.PostCode" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Client.City">Miasto</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Client.City" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.City" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Client.Mail">E-mail</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Client.Mail" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.Mail" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Client.Phone">Telefon</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Client.Phone" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.Phone" class="text-danger"></span>
+      </div>
+
+      <div class="form-group row">
+         <div class="col-2">
+            <label asp-for="Client.NIP">NIP</label>
+         </div>
+         <div class="col-4">
+            <input asp-for="Client.NIP" class="form-control" />
+         </div>
+         <span asp-validation-for="Client.NIP" class="text-danger"></span>
+         <div class="col-2">
+            <label asp-for="Client.AllPaid">Opłacony</label>
+         </div>
+         <div class="col-4">
+            <select asp-for="Client.AllPaid" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.YesNo>()" class="form-control">
+               <option selected="selected" value="">Proszę wybrać</option>
+            </select>
+         </div>
+         <span asp-validation-for="Client.AllPaid" class="text-danger"></span>
+      </div>
+
+      <br />
+      <div class="form-group row">
+         <div class="col-3 offset-3">
+            <button type="submit" class="btn btn-primary form-control">@(Model.Client.ClientID!=0? "Edytuj": "Dodaj")</button>
+         </div>
+         <div class="col-3">
+            <a asp-page="IndexClients" class="btn btn-success form-control">Powrót</a>
+         </div>
+      </div>
+
+   </form>
+</div>
+
+@*Nie odświeża strony tylko kieruje do inputa gdzie nie ma wymaganej wartości*@
+@section Scripts{
+   <partial name="_ValidationScriptsPartial" />
+}
+

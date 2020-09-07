@@ -3,6 +3,13 @@ var isFree = {
     0: "tak",
     1: "nie"
 };
+var profession = {
+    0:"elektryk",
+    1:"mechanik",
+    2:"blacharz",
+    3:"wulkanizator",
+    4:"pomocnik"
+};
 
 $(document).ready(function () {
     loadDataTable();
@@ -17,7 +24,12 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "getFullName", "width": "19%" },
-            { "data": "profession", "width": "17%" },
+            {
+                "data": "profession",
+                "render": function (data) {
+                    return profession[data];
+                }, "width": "17%"
+            },
             {
                 "data": "isFree",
                 "render": function (data) {
@@ -26,7 +38,7 @@ function loadDataTable() {
             },
             { "data": "phone", "width": "17%" },
             {
-                "data": "id",
+                "data": "employeeID",
                 "render": function (data) {
                     return `<div class="text-center">
                     <a href="/ServiceList/UpsertEmployee?id=${data}" class='btn btn-success text-white' style='cursor:pointer;width:70px;'>

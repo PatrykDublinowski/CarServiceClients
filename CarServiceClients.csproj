@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20200826074203_RenameClientToService.Designer.cs" />
     <Compile Remove="Migrations\20200827091309_NewTablesV1.cs" />
     <Compile Remove="Migrations\20200827091309_NewTablesV1.Designer.cs" />
+    <Compile Remove="Migrations\20200827123031_test.cs" />
+    <Compile Remove="Migrations\20200827123031_test.Designer.cs" />
+    <Compile Remove="Migrations\20200907124231_test.cs" />
+    <Compile Remove="Migrations\20200907124231_test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

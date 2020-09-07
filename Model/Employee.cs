@@ -52,7 +52,6 @@ namespace CarServiceClients.Model
 
         [Required]
         [Display(Name = "Specjalizacja")]
-        [StringLength(50)]
         public Profession Profession { get; set; }
 
         [Required]

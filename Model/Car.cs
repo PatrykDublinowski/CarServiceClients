@@ -26,7 +26,6 @@ namespace CarServiceClients.Model
 
         [Required]
         [Display(Name = "Typ nadwozia")]
-        [StringLength(50)]
         public BodyType BodyType { get; set; }
 
         [Display(Name = "Kolor")]
@@ -43,7 +42,6 @@ namespace CarServiceClients.Model
 
         [Required]
         [Display(Name = "Typ paliwa")]
-        [StringLength(50)]
         public FuelType FuelType { get; set; }
 
         [Required]

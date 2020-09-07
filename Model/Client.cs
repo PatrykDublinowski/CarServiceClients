@@ -58,7 +58,7 @@ namespace CarServiceClients.Model
 
         [Required]
         [Display(Name = "Wszystko opłacone")]
-        public bool AllPaid {get; set;}
+        public YesNo AllPaid {get; set;}
 
         public List<Car> Cars { get; set; }
         public List<Service> Services { get; set; }

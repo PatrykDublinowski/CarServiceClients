@@ -84,7 +84,6 @@
             <label asp-for="Employee.Profession">Specjalizacja</label>
          </div>
          <div class="col-4">
-            @*TODO: Problem z konwersja Profession na string!*@
             <select asp-for="Employee.Profession" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.Profession>()" class="form-control">
                <option selected="selected" value="">Proszę wybrać</option>
             </select>

@@ -22,7 +22,6 @@ namespace CarServiceClients.Model
 
         [Required]
         [Display(Name = "Status")]
-        [StringLength(50)]
         public Status Status { get; set; }
 
         [Required]
