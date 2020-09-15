@@ -1,7 +1,7 @@
 ﻿var dataTable;
-var allPaid = {
-    0: "tak",
-    1: "nie"
+var noYes = {
+    0: "nie",
+    1: "tak"
 };
 
 $(document).ready(function () {
@@ -20,7 +20,7 @@ function loadDataTable() {
             {
                 "data": "allPaid",
                 "render": function (data) {
-                    return allPaid[data];
+                    return noYes[data];
                 }, "width": "17%"
             },
             { "data": "phone", "width": "17%" },

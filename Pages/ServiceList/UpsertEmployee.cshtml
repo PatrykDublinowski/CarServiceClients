@@ -93,8 +93,8 @@
             <label asp-for="Employee.IsFree">Czy wolny?</label>
          </div>
          <div class="col-4">
-            <select asp-for="Employee.IsFree" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.YesNo>()" class="form-control">
-               <option selected="selected" value="">Proszę wybrać</option>
+            <select asp-for="Employee.IsFree" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.NoYes
+   >()" class="form-control">
             </select>
          </div>
          <span asp-validation-for="Employee.IsFree" class="text-danger"></span>

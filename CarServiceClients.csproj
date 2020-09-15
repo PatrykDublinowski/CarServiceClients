@@ -13,6 +13,12 @@
     <Compile Remove="Migrations\20200827123031_test.Designer.cs" />
     <Compile Remove="Migrations\20200907124231_test.cs" />
     <Compile Remove="Migrations\20200907124231_test.Designer.cs" />
+    <Compile Remove="Migrations\20200908103826_DeleteDataFormat.cs" />
+    <Compile Remove="Migrations\20200908103826_DeleteDataFormat.Designer.cs" />
+    <Compile Remove="Migrations\20200908112318_test.cs" />
+    <Compile Remove="Migrations\20200908112318_test.Designer.cs" />
+    <Compile Remove="Migrations\20200915074243_DefaultNullDateTime.cs" />
+    <Compile Remove="Migrations\20200915074243_DefaultNullDateTime.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

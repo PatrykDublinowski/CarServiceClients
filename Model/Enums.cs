@@ -37,9 +37,9 @@
         pomocnik
     }
 
-    public enum YesNo
+    public enum NoYes
     {
-        tak,
-        nie
+        nie,
+        tak
     }
 }

@@ -12,12 +12,12 @@ namespace CarServiceClients.Model
 
         [Required]
         [Display(Name = "Data utworzenia")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         public DateTime CreateDate { get; set; }
 
         [Required]
         [Display(Name = "Data ostatniej edycji")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         public DateTime LastEditDate { get; set; }
 
         [Required]
@@ -34,11 +34,11 @@ namespace CarServiceClients.Model
         public decimal Cost { get; set; }
 
         [Display(Name = "Opłacone")]
-        public YesNo IsPaid { get; set; }
+        public NoYes IsPaid { get; set; }
 
         [Display(Name = "Data opłacenia")]
-        [DataType(DataType.Date)]
-        public DateTime PaymentDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        public DateTime? PaymentDate { get; set; } = null;
 
         [ForeignKey("Employee")]
         public int EmployeeID { get; set; }

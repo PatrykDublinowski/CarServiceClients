@@ -55,6 +55,8 @@ namespace CarServiceClients.Pages.ServiceList
 
                 return RedirectToPage("IndexClients");
             }
+
+            //sprawdzam co dzieje się z modelem, ze się nie waliduje
             var errors = ModelState.Select(x => x.Value.Errors)
                            .Where(y => y.Count > 0)
                            .ToList();

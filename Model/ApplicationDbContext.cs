@@ -27,5 +27,5 @@ namespace CarServiceClients.Model
             //     .HasConversion(converter);
             //});
         }
-    } 
+    }
 }

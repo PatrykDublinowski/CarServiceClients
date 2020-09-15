@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using CarServiceClients.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,9 +19,15 @@ namespace CarServiceClients.Pages.ServiceList
 
         [BindProperty]
         public Service Service { get; set; }
+        
+        public IEnumerable<Client> ListOfClients { get; set; }
+        public IEnumerable<Employee> ListOfEmployees { get; set; }
 
         public async Task<IActionResult> OnGet(int? id)
         {
+            ListOfClients   = await _db.Client.ToListAsync();
+            ListOfEmployees = await _db.Employee.ToListAsync();
+
             //TODO: poskracać IFy
             Service = new Service();
             if (id == null)
@@ -43,10 +51,14 @@ namespace CarServiceClients.Pages.ServiceList
             {
                 if (Service.ServiceID == 0)
                 {
+                    Service.CreateDate   = System.DateTime.Now;
+                    Service.LastEditDate = System.DateTime.Now;
+
                     _db.Service.Add(Service);
                 }
                 else
                 {
+                    Service.LastEditDate = System.DateTime.Now;
                     _db.Service.Update(Service);
                 }
 
@@ -54,6 +66,10 @@ namespace CarServiceClients.Pages.ServiceList
 
                 return RedirectToPage("Index");
             }
+            //sprawdzam co dzieje się z modelem, ze się nie waliduje
+            var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
             return RedirectToPage();
         }
     }

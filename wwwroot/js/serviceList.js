@@ -4,6 +4,10 @@ var statusEnum = {
     1: "realizowany",
     2: "zakończony"
 };
+var noYes = {
+    0: "nie",
+    1: "tak"
+};
 
 $(document).ready(function () {
     loadDataTable();
@@ -17,15 +21,31 @@ function loadDataTable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "clientID", "width": "15%" },
-            { "data": "carID", "width": "15%" },
+            {
+                "data": "serviceID",
+                "render": function (data) {
+                    return "#"+data;
+                }, "width": "12%"
+            },
             {
                 "data": "status",
                 "render": function (data) {
                     return statusEnum[data];
-                },"width": "15%"
+                },"width": "12%"
             },
-            { "data": "description", "width": "25%" },
+            { "data": "description", "width": "22%" },
+            {
+                "data": "lastEditDate", "render": function (data) {
+                    var dateWithoutMs = data.split('.');
+                    var dateTimeReady = dateWithoutMs[0].split('T');
+                    return dateTimeReady[0] + " " + dateTimeReady[1];
+                }, "width": "12%" },
+            {
+                "data": "isPaid",
+                "render": function (data) {
+                    return noYes[data];
+                }, "width": "12%"
+            },
             {
                 "data": "serviceID",
                 "render": function (data) {

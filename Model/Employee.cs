@@ -56,7 +56,7 @@ namespace CarServiceClients.Model
 
         [Required]
         [Display(Name = "Czy wolny")]
-        public YesNo IsFree { get; set; }
+        public NoYes IsFree { get; set; }
 
         public List<Service> Services { get; set; }
 

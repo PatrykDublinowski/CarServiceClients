@@ -1,7 +1,7 @@
 ﻿var dataTable;
-var isFree = {
-    0: "tak",
-    1: "nie"
+var noYes = {
+    0: "nie",
+    1: "tak"
 };
 var profession = {
     0:"elektryk",
@@ -33,7 +33,7 @@ function loadDataTable() {
             {
                 "data": "isFree",
                 "render": function (data) {
-                    return isFree[data];
+                    return noYes[data];
                 }, "width": "17%"
             },
             { "data": "phone", "width": "17%" },
