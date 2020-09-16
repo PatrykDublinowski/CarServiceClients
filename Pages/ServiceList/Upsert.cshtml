@@ -1,0 +1,72 @@
+﻿@page
+@model CarServiceClients.Pages.ServiceList.UpsertModel
+@{
+    ViewData["Title"] = Model.Service.Id != 0 ? "Edycja usługi" : "Dodadawanie usługi";
+}
+
+   <div class="fotoHeader">
+      <br />
+      <h2 class="textHeader align-content-center">@(Model.Service.Id!=0? "Edytuj": "Dodaj") usługę</h2>
+      <br />
+   </div>
+
+   <div class="border container" style="padding:30px; margin-top:50px;">
+      <form method="post">
+         @if (Model.Service.Id != 0)
+         {
+            <input type="hidden" asp-for="Service.Id" />
+         }
+         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+         <div class="form-group row">
+            <div class="col-3">
+               <label asp-for="Service.Name">Nazwa klienta</label>
+            </div>
+            <div class="col-6">
+               <input asp-for="Service.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Service.Name" class="text-danger"></span>
+         </div>
+         <div class="form-group row">
+            <div class="col-3">
+               <label asp-for="Service.Car">Samochód klienta</label>
+            </div>
+            <div class="col-6">
+               <input asp-for="Service.Car" class="form-control" />
+            </div>
+            <span asp-validation-for="Service.Car" class="text-danger"></span>
+         </div>
+         <div class="form-group row">
+            <div class="col-3">
+               <label asp-for="Service.Status">Status</label>
+            </div>
+            <div class="col-6">
+               <select asp-for="Service.Status" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.Status>()" class="form-control">
+                  <option selected="selected" value="">Proszę wybrać</option>
+               </select>
+            </div>
+         </div>
+         <div class="form-group row">
+            <div class="col-3">
+               <label asp-for="Service.Description">Opis usługi</label>
+            </div>
+            <div class="col-6">
+               <textarea asp-for="Service.Description" class="form-control"></textarea>
+            </div>
+         </div>
+         <div class="form-group row">
+            <div class="col-3 offset-3">
+               <button type="submit" class="btn btn-primary form-control">@(Model.Service.Id!=0? "Edytuj": "Dodaj")</button>
+            </div>
+            <div class="col-3">
+               <a asp-page="Index" class="btn btn-success form-control">Powrót</a>
+            </div>
+         </div>
+      </form>
+   </div>
+
+@*Nie odświeża strony tylko kieruje do inputa gdzie nie ma wymaganej wartości*@
+@section Scripts{
+   <partial name="_ValidationScriptsPartial" />
+}
+
+

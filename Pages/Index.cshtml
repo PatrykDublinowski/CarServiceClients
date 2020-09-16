@@ -1,10 +1,78 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Start";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="containerFull">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+         <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+               <div class="d-flex align-items-center justify-content-center" style="position:relative">
+                  <div class="slideText">
+                     <h1 class="tracking-in-expand">Zarządzaj swoimi klientami</h1>
+                  </div>
+                  <img class="slider" src="~/images/slider1.jpg" />
+               </div>
+            </div>
+            <div class="carousel-item">
+               <div class="d-flex align-items-center justify-content-center" style="position:relative">
+                  <div class="slideText">
+                     <h1 class="tracking-in-expand">Upłynnij organizacje pracy</h1>
+                  </div>
+                  <img class="slider" src="~/images/slider2.jpg" />
+               </div>
+            </div>
+            <div class="carousel-item">
+               <div class="d-flex align-items-center justify-content-center" style="position:relative">
+                  <div class="slideText">
+                     <h1 class="tracking-in-expand">Informuj klienta na bieżąco</h1>
+                  </div>
+                  <img class="slider" src="~/images/slider3.jpg" />
+               </div>
+            </div>
+         </div>
+         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Poprzedni</span>
+         </a>
+         <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Następny</span>
+         </a>
+      </div>
+   </div>
+
+   <div class="container row mt-5" style="width: 100%; padding-right: 10px; padding-left: 10px; margin-right: auto; margin-left: auto; ">
+      <div class="col-12 text-center">
+         <h1>Witamy!</h1>
+         <br />
+         <p>Aplikacja E-WARSZTAT pomoże Ci w zarządzaniu Twoim serwisem samochodowym.</p>
+         <p>Nie czekaj - wypróbuj!</p>
+      </div>
+   </div>
+
+   <div class="container row" style="width: 100%; margin-right: auto; margin-left: auto; ">
+      <div class="card mt-5 mb-5 col-4">
+         <div class="fa fa-check" style="font-size:50px;"></div>
+         <h1 class="cartText">PROFESJONALIZM</h1>
+      </div>
+
+      <div class="card mt-5 mb-5 col-4"">
+         <div class="fa fa-check" style="font-size:50px;"></div>
+         <h1 class="cartText">OSZCZĘDNOŚĆ CZASU</h1>
+      </div>
+
+      <div class="card mt-5 mb-5 col-4">
+         <div class="fa fa-check" style="font-size:50px;"></div>
+         <h1 class="cartText">ZADOWOLENIE</h1>
+      </div>
+
+   </div>
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+﻿@page
+@model CarServiceClients.Pages.ServiceList.IndexModel
+@{
+   ViewData["Title"] = "Lista usług";
+}
+
+<div class="fotoHeader">
+   <br />
+   <h2 class="textHeader align-content-center">Lista zgłoszonych usług</h2>
+   <br />
+</div>
+
+<div class="container col-3 p-5">
+   <a asp-page="Upsert" class="btn btn-info form-control text-white">+ Dodaj nową usługę</a>
+</div>
+
+<div class="container row" style="width: 100%; padding-right: 10px; padding-left: 10px; margin-right: auto; margin-left: auto;">
+   <!-- #region STANDARDOWA WERSJA -->
+   @*
+         <div class="col-12 border p-3 mt-3">
+         <form method="post">
+            @if (Model.Services.Count()>0)
+            {
+               <table class="table table-striped border">
+                  <tr class="table-secondary">
+                     <th>
+                        <label asp-for="Services.FirstOrDefault().Name">Nazwa klienta</label>
+                     </th>
+                     <th>
+                        <label asp-for="Services.FirstOrDefault().Car">Samochód</label>
+                     </th>
+                     <th>
+                        <label asp-for="Services.FirstOrDefault().Status">Status</label>
+                     </th>
+                     <th>
+
+                     </th>
+                  </tr>
+                  @foreach (var service in Model.Services)
+                  {
+                     <tr>
+                        <td>
+                           @Html.DisplayFor(m => service.Name)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(m => service.Car)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(m => service.Status)
+                        </td>
+                        <td>
+                           <button asp-page-handler="Delete" asp-route-id="@service.Id" onclick="return confirm('Czy jesteś pewny, że chcesz usunąć klienta?')" class="btn btn-danger btn-sm">Usuń</button>
+                           <a asp-page="Edit" asp-route-id="@service.Id" class="btn btn-success btn-sm text-white">Edytuj</a>
+                        </td>
+                     </tr>
+                  }
+               </table>
+            }
+            else
+            {
+               <p>Brak wprowadzonych klientów</p>
+            }
+         </form>
+      </div>
+
+       <div class="col-12" style="text-align:center">
+          <br />
+          <span class="h3 text-info">LUB</span>
+          <br /><br />
+       </div>
+   *@
+   <!-- #endregion -->
+
+   <br /><br /><br />
+   <div class="col-12 border p-3">
+      <table id="DT_Load" class="table table-striped table-bordered" style="width:100%">
+         <thead>
+            <tr>
+               <th>Nazwa klienta</th>
+               <th>Samochód</th>
+               <th>Status</th>
+               <th>Opis usługi</th>
+               <th></th>
+            </tr>
+         </thead>
+      </table>
+   </div>
+</div>
+
+@section Scripts{
+   <script src="~/js/serviceList.js"></script>
+}
+
