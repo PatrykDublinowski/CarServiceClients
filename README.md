@@ -15,14 +15,14 @@ Application helps the owners of car services to organize work. Application stora
 
 
 ## Screenshots
-<img src="screens/start" width="600" height="300">
-<img src="screens/employeesList" width="600" height="300">
-<img src="screens/addEmployee" width="600" height="300">
-<img src="screens/clientsList" width="600" height="300">
-<img src="screens/addClient" width="600" height="300">
-<img src="screens/servicesList" width="600" height="300">
-<img src="screens/addService" width="600" height="300">
-<img src="screens/editService" width="600" height="300">
+<img src="screens/start.png">
+<img src="screens/employeesList.png">
+<img src="screens/addEmployee.png">
+<img src="screens/clientsList.png">
+<img src="screens/addClient.png">
+<img src="screens/servicesList.png">
+<img src="screens/addService.png">
+<img src="screens/editService.png">
 
 ## Technologies
 * ASP.NET Core 3.1 (RAZOR pages)
