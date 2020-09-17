@@ -1,12 +1,14 @@
 ﻿var dataTable;
-var statusEnum = {
-    0: "wprowadzony",
-    1: "realizowany",
-    2: "zakończony"
-};
 var noYes = {
     0: "nie",
     1: "tak"
+};
+var profession = {
+    0:"elektryk",
+    1:"mechanik",
+    2:"blacharz",
+    3:"wulkanizator",
+    4:"pomocnik"
 };
 
 $(document).ready(function () {
@@ -14,48 +16,37 @@ $(document).ready(function () {
 });
 
 function loadDataTable() {
-    dataTable = $('#DT_Load').DataTable({
+    dataTable = $('#DT_Load_Employees').DataTable({
         "ajax": {
-            "url": "/api/service",
+            "url": "/api/employee",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
+            { "data": "getFullName", "width": "19%" },
             {
-                "data": "serviceID",
+                "data": "profession",
                 "render": function (data) {
-                    return "#"+data;
-                }, "width": "12%"
+                    return profession[data];
+                }, "width": "17%"
             },
             {
-                "data": "status",
-                "render": function (data) {
-                    return statusEnum[data];
-                },"width": "12%"
-            },
-            { "data": "description", "width": "22%" },
-            {
-                "data": "lastEditDate", "render": function (data) {
-                    var dateWithoutMs = data.split('.');
-                    var dateTimeReady = dateWithoutMs[0].split('T');
-                    return dateTimeReady[0] + " " + dateTimeReady[1];
-                }, "width": "12%" },
-            {
-                "data": "isPaid",
+                "data": "isFree",
                 "render": function (data) {
                     return noYes[data];
-                }, "width": "12%"
+                }, "width": "17%"
             },
+            { "data": "phone", "width": "17%" },
             {
-                "data": "serviceID",
+                "data": "employeeID",
                 "render": function (data) {
                     return `<div class="text-center">
-                    <a href="/ServiceList/Upsert?id=${data}" class='btn btn-success text-white' style='cursor:pointer;width:70px;'>
+                    <a href="/ServiceList/UpsertEmployee?id=${data}" class='btn btn-success text-white' style='cursor:pointer;width:70px;'>
                         Edytuj
                     </a>
                     &nbsp;
                     <a class='btn btn-danger text-white' style='cursor:pointer;width:70px;'
-                    onclick=Delete('/api/service?id='+${data})>
+                    onclick=Delete('/api/Employee?id='+${data})>
                         Usuń 
                     </a>
                     </div>`;
@@ -84,6 +75,6 @@ function loadDataTable() {
                 "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
             }
         },
-        "width":"100%"
+        "width": "100%"
     })
 }

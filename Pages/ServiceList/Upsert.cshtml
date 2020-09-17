@@ -1,39 +1,45 @@
 ﻿@page
 @model CarServiceClients.Pages.ServiceList.UpsertModel
 @{
-    ViewData["Title"] = Model.Service.Id != 0 ? "Edycja usługi" : "Dodadawanie usługi";
+    ViewData["Title"] = Model.Service.ServiceID != 0 ? "Edycja usługi" : "Dodadawanie usługi";
 }
 
    <div class="fotoHeader">
       <br />
-      <h2 class="textHeader align-content-center">@(Model.Service.Id!=0? "Edytuj": "Dodaj") usługę</h2>
+      <h2 class="textHeader align-content-center">@(Model.Service.ServiceID!=0? "Edytuj": "Dodaj") usługę</h2>
       <br />
    </div>
 
    <div class="border container" style="padding:30px; margin-top:50px;">
       <form method="post">
-         @if (Model.Service.Id != 0)
+         @if (Model.Service.ServiceID != 0)
          {
-            <input type="hidden" asp-for="Service.Id" />
+            <input type="hidden" asp-for="Service.ServiceID" />
          }
+         <input type="hidden" asp-for="Service.CreateDate" />
+
          <div class="text-danger" asp-validation-summary="ModelOnly"></div>
          <div class="form-group row">
             <div class="col-3">
-               <label asp-for="Service.Name">Nazwa klienta</label>
+               <label asp-for="Service.ClientID">Klient</label>
             </div>
             <div class="col-6">
-               <input asp-for="Service.Name" class="form-control" />
+               <select asp-for="Service.ClientID" asp-items="@(new SelectList(Model.ListOfClients,"ClientID","LastName"))" class="form-control">
+                  <option selected="selected" value="">Proszę wybrać</option>
+               </select>
             </div>
-            <span asp-validation-for="Service.Name" class="text-danger"></span>
+            <span asp-validation-for="Service.ClientID" class="text-danger"></span>
          </div>
          <div class="form-group row">
             <div class="col-3">
-               <label asp-for="Service.Car">Samochód klienta</label>
+               <label asp-for="Service.EmployeeID">Pracownik</label>
             </div>
             <div class="col-6">
-               <input asp-for="Service.Car" class="form-control" />
+               <select asp-for="Service.EmployeeID" asp-items="@(new SelectList(Model.ListOfEmployees,"EmployeeID","LastName"))" class="form-control">
+                  <option selected="selected" value="">Proszę wybrać</option>
+               </select>
             </div>
-            <span asp-validation-for="Service.Car" class="text-danger"></span>
+            <span asp-validation-for="Service.EmployeeID" class="text-danger"></span>
          </div>
          <div class="form-group row">
             <div class="col-3">
@@ -41,7 +47,6 @@
             </div>
             <div class="col-6">
                <select asp-for="Service.Status" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.Status>()" class="form-control">
-                  <option selected="selected" value="">Proszę wybrać</option>
                </select>
             </div>
          </div>
@@ -53,9 +58,58 @@
                <textarea asp-for="Service.Description" class="form-control"></textarea>
             </div>
          </div>
+
+         @*TODO: Sprawdzić czemu przy edycji trzeba zawsze edytować pole koszt usługi*@
+         <div class="form-group row">
+            <div class="col-3">
+               <label asp-for="Service.Cost">Koszt usługi (PLN)</label>
+            </div>
+            <div class="col-6">
+               <input asp-for="Service.Cost" class="form-control"/>
+            </div>
+         </div>
+
+         @if (Model.Service.ServiceID != 0)
+         {
+            var autoHiddenPaymentDate = (Model.Service.IsPaid == CarServiceClients.Model.NoYes.nie) ? "hidden" : string.Empty;
+
+            <div class="form-group row">
+               <div class="col-3">
+                  <label asp-for="Service.IsPaid">Opłacone</label>
+               </div>
+               <div class="col-6">
+                  <select id="isPaid" asp-for="Service.IsPaid" asp-items="Html.GetEnumSelectList<CarServiceClients.Model.NoYes>()" class="form-control">
+                  </select>
+               </div>
+            </div>
+            <div id="paymentDate" class="form-group row @autoHiddenPaymentDate">
+               <div class="col-3">
+                  <label asp-for="Service.PaymentDate">Data opłaty</label>
+               </div>
+               <div class="col-6">
+                  <input id="dateInput" asp-format="{0:yyyy/MM/dd HH:mm:ss}" type="datetime" readonly asp-for="Service.PaymentDate" class="form-control" />
+               </div>
+            </div>
+            <div class="form-group row">
+               <div class="col-3">
+                  <label asp-for="Service.CreateDate">Data utworzenia</label>
+               </div>
+               <div class="col-6">
+                  <input type="datetime" readonly asp-format="{0:yyyy/MM/dd HH:mm:ss}" asp-for="Service.CreateDate" class="form-control" />
+               </div>
+            </div>
+            <div class="form-group row">
+               <div class="col-3">
+                  <label asp-for="Service.LastEditDate">Data ostatniej edycji </label>
+               </div>
+               <div class="col-6">
+                  <input type="datetime" readonly asp-format="{0:yyyy/MM/dd HH:mm:ss}" asp-for="Service.LastEditDate" class="form-control" />
+               </div>
+            </div>
+         }
          <div class="form-group row">
             <div class="col-3 offset-3">
-               <button type="submit" class="btn btn-primary form-control">@(Model.Service.Id!=0? "Edytuj": "Dodaj")</button>
+               <button type="submit" class="btn btn-primary form-control">@(Model.Service.ServiceID!=0? "Edytuj": "Dodaj")</button>
             </div>
             <div class="col-3">
                <a asp-page="Index" class="btn btn-success form-control">Powrót</a>
@@ -67,6 +121,18 @@
 @*Nie odświeża strony tylko kieruje do inputa gdzie nie ma wymaganej wartości*@
 @section Scripts{
    <partial name="_ValidationScriptsPartial" />
+   <script>
+      $("#isPaid").change(function () {
+         $("#paymentDate").addClass("hidden");
+         $("#dateInput").attr("value","@null")
+         if ($("#isPaid").val() == 1)
+         {
+            $("#paymentDate").removeClass("hidden");
+            $("#dateInput").attr("value", "@System.DateTime.Now");
+         }
+      });
+   </script>
+   
 }
 
 

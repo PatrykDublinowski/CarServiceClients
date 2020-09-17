@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using CarServiceClients.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -8,37 +7,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarServiceClients.Pages.ServiceList
 {
-    public class UpsertModel : PageModel
+    public class UpsertClientModel : PageModel
     {
         private ApplicationDbContext _db;
 
-        public UpsertModel(ApplicationDbContext db)
+        public UpsertClientModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public Service Service { get; set; }
-        
-        public IEnumerable<Client> ListOfClients { get; set; }
-        public IEnumerable<Employee> ListOfEmployees { get; set; }
+        public Client Client { get; set; }
 
         public async Task<IActionResult> OnGet(int? id)
         {
-            ListOfClients   = await _db.Client.ToListAsync();
-            ListOfEmployees = await _db.Employee.ToListAsync();
-
             //TODO: poskracać IFy
-            Service = new Service();
+            Client = new Client();
             if (id == null)
             {
                 //create
-               return Page();
+                return Page();
             }
 
             //update
-            Service = await _db.Service.FirstOrDefaultAsync(u => u.ServiceID == id);
-            if (Service == null)
+            Client = await _db.Client.FirstOrDefaultAsync(u => u.ClientID == id);
+            if (Client == null)
             {
                 return NotFound();
             }
@@ -49,23 +42,20 @@ namespace CarServiceClients.Pages.ServiceList
         {
             if (ModelState.IsValid)
             {
-                if (Service.ServiceID == 0)
+                if (Client.ClientID == 0)
                 {
-                    Service.CreateDate   = System.DateTime.Now;
-                    Service.LastEditDate = System.DateTime.Now;
-
-                    _db.Service.Add(Service);
+                    _db.Client.Add(Client);
                 }
                 else
                 {
-                    Service.LastEditDate = System.DateTime.Now;
-                    _db.Service.Update(Service);
+                    _db.Client.Update(Client);
                 }
 
                 await _db.SaveChangesAsync();
 
-                return RedirectToPage("Index");
+                return RedirectToPage("IndexClients");
             }
+
             //sprawdzam co dzieje się z modelem, ze się nie waliduje
             var errors = ModelState.Select(x => x.Value.Errors)
                            .Where(y => y.Count > 0)
